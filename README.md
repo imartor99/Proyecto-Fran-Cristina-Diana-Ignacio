@@ -10,16 +10,16 @@ Este proyecto ha sido realizado por un grupo de 4 alumnos para la asignatura de 
 
 A continuación se detalla la distribución del trabajo para cumplir con los requisitos de 2 vistas y 1 funcionalidad única por integrante.
 
-### 👤 Integrante 1: Autenticación y Usuarios
+### 👤 Fran: Autenticación y Usuarios
 
 **Responsabilidad:** Gestión de acceso y perfil de usuario.
 
 - **Vistas:**
   1.  **Login/Registro (Index):** Formulario de entrada y registro de nuevos usuarios.
   2.  **Perfil de Usuario:** Visualización de datos y historial.
-- **Funcionalidad Única:** Sistema de **Edición de Perfil con subida de imagen (Avatar)** o cambio de contraseña seguro.
+- **Funcionalidad Única:** Sistema de **Edición de Perfil con subida de imagen (Avatar)**.
 
-### 🎬 Integrante 2: Catálogo y Cartelera
+### 🎬 Cristina: Catálogo y Cartelera
 
 **Responsabilidad:** Visualización pública de las películas.
 
@@ -28,7 +28,7 @@ A continuación se detalla la distribución del trabajo para cumplir con los req
   2.  **Ficha Técnica:** Vista detallada de una película (sinopsis, trailer, horarios).
 - **Funcionalidad Única:** **Buscador AJAX en tiempo real** y filtrado por género.
 
-### 🎟️ Integrante 3: Reservas y Entradas
+### 🎟️ Diana: Reservas y Entradas
 
 **Responsabilidad:** Proceso de compra y gestión de butacas.
 
@@ -37,7 +37,7 @@ A continuación se detalla la distribución del trabajo para cumplir con los req
   2.  **Mis Entradas/Confirmación:** Resumen de la compra y tickets QR.
 - **Funcionalidad Única:** **Selección gráfica de asientos** (validación de ocupación en tiempo real).
 
-### 🛠️ Integrante 4: Administración (Panel de Control)
+### 🛠️ Ignacio: Administración (Panel de Control)
 
 **Responsabilidad:** Gestión del contenido del cine (CRUD).
 
@@ -66,7 +66,7 @@ La navegación se realiza sin recargar la página completa. Se utiliza **JavaScr
 
 | Requisito                                                   | Estado       | Responsable  |
 | ----------------------------------------------------------- | ------------ | ------------ |
-| **(1.5 ptos)** Registro y acceso de usuarios (en el index)  | ⏳ Pendiente | Integrante 1 |
+| **(1.5 ptos)** Registro y acceso de usuarios (en el index)  | ⏳ Pendiente | Fran         |
 | **(2.0 ptos)** Creación de al menos 2 vistas por componente | ⏳ Pendiente | Todos        |
 | **(2.0 ptos)** Una funcionalidad por componente             | ⏳ Pendiente | Todos        |
 | **(1.5 ptos)** Incluir CSS/Bootstrap para interfaz          | ⏳ Pendiente | Todos        |
@@ -95,4 +95,4 @@ El proyecto ha sido desplegado en InfinityFree en la siguiente URL:
 
 ---
 
-**Nota:** El login es obligatorio y no cuenta como funcionalidad única del Integrante 1, por eso se ha añadido la edición de perfil con avatar.
+**Nota:** El login es obligatorio y no cuenta como funcionalidad única de Fran, por eso se ha añadido la edición de perfil con avatar.
