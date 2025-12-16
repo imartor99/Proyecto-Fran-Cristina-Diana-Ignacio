@@ -1,0 +1,58 @@
+# Plan de Implementación: Estructura MVC y SPA CineApp
+
+## Objetivo
+Establecer la arquitectura base del proyecto cumpliendo con los requisitos de MVC y SPA, para facilitar el trabajo colaborativo de los 4 integrantes.
+
+## Revisión del Usuario Requerida
+- [ ] Confirmar si prefieren usar una librería de enrutamiento o un Router propio sencillo en PHP. (Asumiremos Router propio sencillo).
+- [ ] Confirmar si se desea usar Bootstrap, Tailwind o CSS puro. (Requisito dice "CSS o Bootstrap", usaremos CSS puro con variables o Bootstrap CDN para simplicidad).
+
+## Cambios Propuestos
+
+### Estructura de Directorios
+Creación de la siguiente jerarquía:
+```
+/
+├── app/
+│   ├── Config/       # Configuración global (DB, const)
+│   ├── Controllers/  # Lógica de cada módulo (Auth, Cine, Admin...)
+│   ├── Core/         # Clases base (App, Controller, Model, Database)
+│   ├── Models/       # Acceso a datos
+│   └── Views/        # Plantillas HTML
+│       ├── layouts/  # Header, Footer
+│       ├── auth/
+│       ├── movies/
+│       ├── tickets/
+│       └── admin/
+├── public/           # Archivos accesibles vía web (Entry point)
+│   ├── css/
+│   ├── js/
+│   ├── img/
+│   └── index.php     # Único punto de entrada
+└── sql/              # Scripts de Base de Datos
+```
+
+### Archivos Principales [NEW]
+
+#### [NEW] `public/index.php`
+Punto de entrada. Carga el autoloader, inicia la sesión e invoca al Router/App.
+
+#### [NEW] `app/Core/App.php` (Router)
+Gestiona las URLs amigables. Descompone la URL en `Controlador/Método/Parámetros` e instancia el controlador correspondiente.
+
+#### [NEW] `app/Core/Database.php`
+Clase Singleton para la conexión a Base de Datos usando PDO.
+
+#### [NEW] `app/Core/Controller.php`
+Clase padre con métodos para cargar modelos (`$this->model()`) y renderizar vistas (`$this->view()`).
+
+#### [NEW] `public/js/app.js`
+Lógica SPA. Interceptará clicks en enlaces para cargar el contenido vía `fetch` en lugar de recargar la página.
+
+## Plan de Verificación
+
+### Verificación Manual
+1.  **Estructura:** Comprobar que todas lod carpetas existen.
+2.  **Ruteo:** Acceder a `localhost/Proyecto_Grupal/` y ver la página de inicio.
+3.  **Base de Datos:** Verificar conexión exitosa (simple script de prueba).
+4.  **SPA:** Navegar entre dos vistas simples (ej. Login -> Registro) sin recarga completa del navegador (observar pestaña Network).
