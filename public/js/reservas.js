@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cargar butacas ocupadas
     async function loadOccupation() {
         try {
-            const response = await fetch(`/CineApp/reservas/getOcupacion/${sesionId}`);
+            const response = await fetch(`/reservas/getOcupacion/${sesionId}`);
             if (!response.ok) throw new Error('Servidor no disponible');
             const occupiedSeats = await response.json();
             renderMap(occupiedSeats);
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch('/CineApp/reservas/confirmar', {
+            const response = await fetch('/reservas/confirmar', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
