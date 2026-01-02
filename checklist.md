@@ -20,11 +20,11 @@
 
 **Objetivo:** Mostrar la cartelera y permitir búsquedas.
 
-- [ ] **Modelo:** Crear modelo `Pelicula` (métodos `obtenerTodas`, `obtenerPorId`)
-- [ ] **Vista:** Catálogo principal (Grid de pósters)
-- [ ] **Vista:** Ficha técnica de película (Detalles, sinopsis)
-- [ ] **Controlador:** Crear `Peliculas.php` para gestionar las vistas
-- [ ] **Funcionalidad Única:** Buscador en tiempo real (AJAX) o Filtro por Género
+- [x] **Modelo:** Crear modelo `Pelicula` (métodos `obtenerTodas`, `obtenerPorId`)
+- [x] **Vista:** Catálogo principal (Grid de pósters)
+- [x] **Vista:** Ficha técnica de película (Detalles, sinopsis)
+- [x] **Controlador:** Crear `Peliculas.php` para gestionar las vistas
+- [x] **Funcionalidad Única:** Buscador en tiempo real (AJAX) y Filtro por Género
 
 ## 🎟️ Diana: Sistema de Reservas/Entradas
 
