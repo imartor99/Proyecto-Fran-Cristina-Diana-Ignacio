@@ -23,7 +23,7 @@ class Base {
         $p1 = new stdClass;
         $p1->id = 1;
         $p1->titulo = "Inception";
-        $p1->genero = "Ciencia Ficción";
+        $p1->genero = "Ciencia Ficcion";
         $p1->imagen = "poster1.jpg"; // Asegúrate de tener una imagen o se verá roto
         $p1->descripcion = "Un ladrón que roba secretos corporativos a través del uso de la tecnología de compartir sueños...";
         $p1->fecha_estreno = "2010-07-16";
@@ -32,7 +32,7 @@ class Base {
         $p2 = new stdClass;
         $p2->id = 2;
         $p2->titulo = "The Dark Knight";
-        $p2->genero = "Acción";
+        $p2->genero = "Accion";
         $p2->imagen = "poster2.jpg"; 
         $p2->descripcion = "Batman se enfrenta al Joker...";
         $p2->fecha_estreno = "2008-07-18";
@@ -57,5 +57,24 @@ class Base {
     
     public function rowCount(){
         return 2;
+    }
+
+        // Funcionalidad para el buscador
+    public function buscar($termino, $genero = '') {
+        // Debug
+        // error_log("Busqueda: $termino, Genero: $genero");
+        $todos = $this->resultSet(); // Usamos los datos mock
+        
+        $filtrados = [];
+        foreach($todos as $p) {
+            $coincideTitulo = empty($termino) || stripos($p->titulo, $termino) !== false;
+            $coincideGenero = empty($genero) || stripos($p->genero, $genero) !== false;
+
+            if($coincideTitulo && $coincideGenero) {
+                $filtrados[] = $p;
+            }
+        }
+        
+        return $filtrados;
     }
 }

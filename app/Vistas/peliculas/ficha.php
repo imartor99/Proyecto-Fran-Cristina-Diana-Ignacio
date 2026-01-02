@@ -19,6 +19,13 @@
                 </div>
             <?php endif; ?>
 
+            <div class="mt-4">
+                <h4>Horarios</h4>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i> Los horarios y sesiones se cargarán dinámicamente. (Módulo de Diana)
+                </div>
+            </div>
+
             <div class="mt-5">
                 <a href="<?php echo RUTA_URL; ?>/reservas/seleccionar/<?php echo $datos['pelicula']->id; ?>" class="btn btn-success btn-lg">Comprar Entradas</a>
                 <a href="<?php echo RUTA_URL; ?>/peliculas" class="btn btn-secondary btn-lg">Volver al Catálogo</a>

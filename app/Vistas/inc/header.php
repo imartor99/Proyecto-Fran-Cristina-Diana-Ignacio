@@ -14,6 +14,9 @@
             object-fit: cover;
         }
     </style>
+    <script>
+        const RUTA_URL = '<?php echo RUTA_URL; ?>';
+    </script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">

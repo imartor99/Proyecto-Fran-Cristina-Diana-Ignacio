@@ -1,25 +1,26 @@
-document.getElementById('buscador').addEventListener('keyup', function() {
-    let termino = this.value;
-    
-    // Si la búsqueda está vacía, podríamos recargar o simplemente dejarlo (el backend maneja vacío devolviendo todo o nada)
-    // Aquí asumimos que el backend devuelve todo si está vacío o podemos hacer reload.
-    // Para UX rápida, enviaremos petición.
+const busquedaInput = document.getElementById('buscador');
+const generoInput = document.getElementById('filtro-genero');
 
-    fetch(RUTA_URL + '/peliculas/buscar', {
+function filtrarPeliculas() {
+    let termino = busquedaInput.value;
+    let genero = generoInput.value;
+
+    let formData = new FormData();
+    formData.append('busqueda', termino);
+    formData.append('genero', genero);
+
+    fetch(URL_BUSCADOR, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ busqueda: termino })
+        body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        let contenedor = document.getElementById('contenedor-peliculas');
-        contenedor.innerHTML = '';
+        .then(response => response.json())
+        .then(data => {
+            let contenedor = document.getElementById('contenedor-peliculas');
+            contenedor.innerHTML = '';
 
-        if(data.length > 0) {
-            data.forEach(pelicula => {
-                let html = `
+            if (data.length > 0) {
+                data.forEach(pelicula => {
+                    let html = `
                     <div class="col-md-3 mb-4 pelicula-item">
                         <div class="card h-100">
                             <img src="${RUTA_URL}/img/${pelicula.imagen}" class="card-img-top" alt="${pelicula.titulo}">
@@ -31,11 +32,14 @@ document.getElementById('buscador').addEventListener('keyup', function() {
                         </div>
                     </div>
                 `;
-                contenedor.innerHTML += html;
-            });
-        } else {
-            contenedor.innerHTML = '<div class="col-12"><p class="text-center">No se encontraron películas.</p></div>';
-        }
-    })
-    .catch(error => console.error('Error:', error));
-});
+                    contenedor.innerHTML += html;
+                });
+            } else {
+                contenedor.innerHTML = '<div class="col-12"><p class="text-center">No se encontraron películas con esos criterios.</p></div>';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+busquedaInput.addEventListener('keyup', filtrarPeliculas);
+generoInput.addEventListener('change', filtrarPeliculas);
