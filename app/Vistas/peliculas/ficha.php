@@ -20,9 +20,23 @@
             <?php endif; ?>
 
             <div class="mt-4">
-                <h4>Horarios</h4>
-                <div class="alert alert-info">
-                    <i class="fas fa-info-circle"></i> Los horarios y sesiones se cargarán dinámicamente. (Módulo de Diana)
+                <h4>Horarios (Simulados)</h4>
+                <?php foreach($datos['horarios'] as $dia): ?>
+                    <div class="card mb-2">
+                        <div class="card-body py-2">
+                            <h6 class="card-title mb-1"><?php echo $dia['fecha']; ?></h6>
+                            <div>
+                                <?php foreach($dia['horas'] as $hora): ?>
+                                    <a href="<?php echo RUTA_URL; ?>/reservas/seleccionar/<?php echo $datos['pelicula']->id; ?>" class="btn btn-outline-primary btn-sm me-2 mb-1">
+                                        <?php echo $hora; ?>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                <div class="text-muted small mt-1">
+                    <i class="fas fa-info-circle"></i> Estos horarios son provisionales hasta la integración con el modelo <code>Sesion</code>.
                 </div>
             </div>
 

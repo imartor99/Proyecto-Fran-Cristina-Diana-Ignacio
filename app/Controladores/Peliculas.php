@@ -19,8 +19,16 @@ class Peliculas extends Controlador {
     public function ficha($id) {
         $pelicula = $this->peliculaModelo->obtenerPorId($id);
 
+        // -- MOCK DE HORARIOS (Para suplir la falta del modelo de Diana) --
+        // Generamos sesiones falsas para hoy y mañana
+        $horarios = [
+            ['fecha' => date('d/m/Y'), 'horas' => ['16:00', '18:30', '21:00']],
+            ['fecha' => date('d/m/Y', strtotime('+1 day')), 'horas' => ['17:00', '19:30', '22:00']]
+        ];
+
         $datos = [
-            'pelicula' => $pelicula
+            'pelicula' => $pelicula,
+            'horarios' => $horarios
         ];
 
         $this->vista('peliculas/ficha', $datos);
