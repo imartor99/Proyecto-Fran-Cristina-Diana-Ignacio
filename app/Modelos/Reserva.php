@@ -14,6 +14,29 @@ class Reserva {
         $stmt->execute([$pelicula, $asiento, $usuario]);
     }
 
+    public static function guardarMultiple($pelicula, $asientos, $usuario) {
+        global $pdo;
+        
+        try {
+            $pdo->beginTransaction();
+            
+            $sql = "INSERT INTO reservas (pelicula_id, asiento_code, usuario_id) VALUES (?, ?, ?)";
+            $stmt = $pdo->prepare($sql);
+
+            foreach ($asientos as $asiento) {
+                // Verificar si ya está ocupado para evitar duplicados o errores
+                // (Opcional, si la BD tiene restricción UNIQUE saltará excepción)
+                $stmt->execute([$pelicula, $asiento, $usuario]);
+            }
+            
+            $pdo->commit();
+            return true;
+        } catch (Exception $e) {
+            $pdo->rollBack();
+            return false;
+        }
+    }
+
     public static function ocupados($pelicula) {
         global $pdo;
 

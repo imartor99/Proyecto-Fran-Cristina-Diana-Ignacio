@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selección de Asientos</title>
     <!-- Vinculamos el CSS para estilos profesionales -->
-    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
     <!-- Google Fonts para un look más moderno -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -41,13 +41,17 @@
         <?php
         $rows = ['A', 'B', 'C', 'D', 'E', 'F'];
         $cols = 8;
+        // Asegurar que existe la variable, si no, array vacío
+        $ocupados = $ocupados ?? [];
         
         foreach ($rows as $row) {
             echo '<div class="row">';
             for ($i = 1; $i <= $cols; $i++) {
                 $seatId = $row . '-' . $i;
-                // Simulación de asientos ocupados (puedes conectar esto con tu BD)
-                $isOccupied = (rand(0, 10) > 8) ? 'occupied' : ''; 
+                
+                // Verificar si está en el array de ocupados
+                $isOccupied = in_array($seatId, $ocupados) ? 'occupied' : ''; 
+                
                 echo '<div class="seat ' . $isOccupied . '" data-seat="' . $seatId . '"></div>';
             }
             echo '</div>';
@@ -104,37 +108,27 @@
 
         if (seatIds.length === 0) return;
 
-        // Enviar a backend
-        // Nota: Esto envía el primer asiento para mantener compatibilidad con el código anterior,
-        // pero idealmente deberías ajustar el backend para recibir un array.
-        // Simulamos envío del primero por ahora o un loop.
-        
-        // Aquí hacemos un fetch por cada asiento o uno masivo. Para este ejemplo, uno masivo sería mejor, 
-        // pero mantendremos la lógica simple del fetch anterior iterando o ajustando.
-        
-        // Vamos a enviar toda la lista como string separado por comas o JSON
-        const seatsString = seatIds.join(',');
+        // Enviar a backend como JSON
+        const seatJson = JSON.stringify(seatIds);
 
         fetch("index.php?c=reservas&a=guardar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
-            body: "asiento=" + encodeURIComponent(seatsString)
+            body: "asientos=" + encodeURIComponent(seatJson)
         })
         .then(res => res.json())
         .then(data => {
             if (data.ok) {
-                alert("Asientos reservados: " + seatsString + " 🎟️");
-                // Recargar para ver cambios (o marcar como ocupados visualmente)
+                alert("Reservados con éxito: " + seatIds.join(', ') + " 🎟️");
                 location.reload();
             } else {
-                alert("Error al reservar");
+                alert("Error al reservar: " + (data.msg || "Desconocido"));
             }
         })
         .catch(err => {
             console.error(err);
-             // Fallback para demo si no hay backend real respondiendo JSON correcto
              alert("Error de conexión o backend");
         });
     });
