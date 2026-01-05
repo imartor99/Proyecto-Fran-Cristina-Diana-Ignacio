@@ -47,4 +47,18 @@ class Reserva {
 
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
+
+    public static function obtenerPorUsuario($usuario_id) {
+        global $pdo;
+
+        // Unimos con peliculas para obtener el título (asumiendo que existe la tabla peliculas)
+        // Por ahora, como no tengo el esquema de peliculas, solo devuelvo los datos de reservas
+        // Si peliculas existe: SELECT r.*, p.titulo FROM reservas r JOIN peliculas p ON r.pelicula_id = p.id ...
+        
+        $sql = "SELECT * FROM reservas WHERE usuario_id = ? ORDER BY id DESC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$usuario_id]);
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

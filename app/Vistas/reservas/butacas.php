@@ -111,7 +111,8 @@
         // Enviar a backend como JSON
         const seatJson = JSON.stringify(seatIds);
 
-        fetch("index.php?c=reservas&a=guardar", {
+        // Actualizado para usar el flujo del carrito
+        fetch("index.php?c=reservas&a=agregar_carrito", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -121,10 +122,10 @@
         .then(res => res.json())
         .then(data => {
             if (data.ok) {
-                alert("Reservados con éxito: " + seatIds.join(', ') + " 🎟️");
-                location.reload();
+                // Redirigir a la vista de resumen
+                window.location.href = "index.php?c=reservas&a=resumen";
             } else {
-                alert("Error al reservar: " + (data.msg || "Desconocido"));
+                alert("Error al agregar al carrito: " + (data.msg || "Desconocido"));
             }
         })
         .catch(err => {

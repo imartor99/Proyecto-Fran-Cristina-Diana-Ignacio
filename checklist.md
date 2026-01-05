@@ -30,11 +30,11 @@
 
 **Objetivo:** Gestión de compra de entradas y selección de butacas.
 
-- [] **Modelo:** Crear modelo `Reserva` y `Sesion`
+- [x] **Modelo:** Crear modelo `Reserva` y `Sesion`
 - [x] **Vista:** Pantalla de Selección de Butacas (Visualmente atractiva)
 - [x] **Funcionalidad:** Lógica de selección de asientos (Javascript para marcar libres/ocupados)
-- [] **Vista:** Resumen de Compra / Carrito
-- [] **Vista:** "Mis Entradas" (Historial de compras)
+- [x] **Vista:** Resumen de Compra / Carrito
+- [x] **Vista:** "Mis Entradas" (Historial de compras)
 - [x] **Funcionalidad Única:** Validación de butacas ocupadas en tiempo real
 
 ## 🛠️ Ignacio: Administración (Backoffice)
